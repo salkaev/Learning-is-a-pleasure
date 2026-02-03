@@ -1,10 +1,11 @@
 import requests
 import sys
 
-query = sys.argv[1] # Данные с названием из основной части кода
+#query = sys.argv[1] # Данные с названием из основной части кода
+query = "Bayraktar TB2 photo"
 
-def search_commons(query, limit=10):
-    url = "https://ru.wikipedia.org/w/api.php"
+def search_commons(query, limit=1):
+    url = "https://commons.wikimedia.org/w/api.php"
 
 
     params = {
@@ -39,7 +40,7 @@ headers = {"User-Agent": "CourseworkBot/1.0"}
 response = requests.get(download_url, headers=headers)
 
 # 4. Сохраняем
-save_as = "compiling_diagram.svg"
+save_as = "Bayraktar TB2.jpg"
 with open(save_as, "wb") as f:
     f.write(response.content)
 
