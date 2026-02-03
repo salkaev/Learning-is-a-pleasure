@@ -1,8 +1,10 @@
 import requests
+import sys
+
+query = sys.argv[1] # Данные с названием из основной части кода
 
 def search_commons(query, limit=10):
-    # 1. Базовый URL API
-    url = "https://commons.wikimedia.org/w/api.php"
+    url = "https://ru.wikipedia.org/w/api.php"
 
 
     params = {
@@ -19,7 +21,7 @@ def search_commons(query, limit=10):
                           headers={"User-Agent": "CourseworkBot/1.0"})
     return response.json()
 ##
-result = search_commons("C++ compilers",)
+result = search_commons(query)
 print (result)
 # 1. Извлекаем название файла
 first_result = result["query"]["search"][0]
@@ -41,4 +43,3 @@ save_as = "compiling_diagram.svg"
 with open(save_as, "wb") as f:
     f.write(response.content)
 
-#print(f"Файл сохранён как: {save_as} ({len(response.content)} байт)")
