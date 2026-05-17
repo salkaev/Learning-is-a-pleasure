@@ -17,7 +17,7 @@ call_model() {
     local result
     
     result=$(curl -s http://localhost:11434/api/generate -d "{
-        \"model\": \"qwen3.5:9b\",
+        \"model\": \"qwen3.5:32b\",
         \"prompt\": $(echo "$prompt" | python3 -c "import sys,json; print(json.dumps(sys.stdin.read()))"),
         \"stream\": false,
         \"options\": {
