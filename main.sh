@@ -17,8 +17,8 @@ call_model() {
     local result
     
     result=$(curl -s http://localhost:11434/api/generate -d "{
-        \"model\": \"qwen3.5:32b\",
-        \"prompt\": $(echo "$prompt" | jq -Rs .),
+        \"model\": \"qwen3.5:9b\",
+        \"prompt\": $(echo "$prompt" | python3 -c "import sys,json; print(json.dumps(sys.stdin.read()))"),
         \"stream\": false,
         \"options\": {
             \"temperature\": 0.7,
@@ -27,7 +27,7 @@ call_model() {
             \"num_ctx\": 8192
         },
         \"think\": false
-    }" | jq -r '.response')
+    }" | python3 -c "import sys,json; print(json.load(sys.stdin)['response'])")
     
     clean_text "$result"
 }
