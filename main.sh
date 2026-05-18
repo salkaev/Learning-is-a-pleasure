@@ -17,8 +17,8 @@ call_model() {
     local json_prompt
     json_prompt=$(echo "$prompt" | python3 -c "import sys,json; print(json.dumps(sys.stdin.read()))")
     
-    curl -s http://localhost:11434/api/generate -d "{
-        \"model\": \"qwen3.5:9b\",
+    curl -s --max-time 3600 --connect-timeout 90 http://localhost:11434/api/generate -d "{
+        \"model\": \"qwen3.5:35b-a3b\",
         \"prompt\": $json_prompt,
         \"stream\": false,
         \"options\": {
