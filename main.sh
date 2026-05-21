@@ -18,7 +18,7 @@ call_model() {
     json_prompt=$(echo "$prompt" | python3 -c "import sys,json; print(json.dumps(sys.stdin.read()))")
     
     curl -s --max-time 3600 --connect-timeout 90 http://localhost:11434/api/generate -d "{
-        \"model\": \"qwen3.5:35b-a3b\",
+        \"model\": \"qwen3:32b\",
         \"prompt\": $json_prompt,
         \"stream\": false,
         \"options\": {
@@ -53,15 +53,11 @@ text=$(call_model "Напиши план для курсовой работы н
 1.2 подпункт
 1.3 подпункт 
 1.4 подпункт 
-1.5 подпункт 
-1.6 подпункт 
 2 Глава связанная с практическим применением  ( нужно придумать какой то проект и выполнить его )
 2.1 подпункт 
 2.2 подпункт 
 2.3 подпункт 
 2.4 подпункт 
-2.5 подпункт 
-2.6 подпункт 
 ЗАКЛЮЧЕНИЕ
 СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ
 ")
